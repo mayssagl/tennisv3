@@ -32,6 +32,16 @@ const P = {
   mail: <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></>,
   lock: <><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></>,
   send: <><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></>,
+  phone: <path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5L16 14l4 1.5V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1Z"/>,
+  whatsapp: <><path d="M4 20l1.3-4A8 8 0 1 1 8.2 19L4 20Z"/><path d="M9.2 8.6c.2-.4.6-.4.8 0l.6 1.3c.1.3 0 .5-.2.7l-.4.4a5 5 0 0 0 2.9 2.9l.4-.4c.2-.2.5-.3.7-.2l1.3.6c.4.2.4.6 0 .8-.6.6-1.4.9-2.2.6a8 8 0 0 1-4.5-4.5c-.3-.8 0-1.6.6-2.2Z"/></>,
+  pin: <><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></>,
+  facebook: <path d="M14 8h2.5V4.5H14A3.5 3.5 0 0 0 10.5 8v2.5H8V14h2.5v6.5H14V14h2.5l.5-3.5h-3V8Z"/>,
+  instagram: <><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r=".6"/></>,
+  up: <path d="m6 15 6-6 6 6"/>,
+  down: <path d="m6 9 6 6 6-6"/>,
+  eye: <><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></>,
+  globe: <><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></>,
+  layout: <><rect x="3.5" y="4" width="17" height="16" rx="1.5"/><path d="M3.5 9h17M9 9v11"/></>,
   partner: <><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M11 20a6 6 0 0 1 11-3.5"/></>,
 }
 export default function Icon({ name, className = 'ic', style }) {

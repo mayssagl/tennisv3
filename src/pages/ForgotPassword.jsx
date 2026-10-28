@@ -17,8 +17,16 @@ export default function ForgotPassword() {
       redirectTo: `${window.location.origin}/reset-password`,
     })
     setBusy(false)
-    // Always show success — don't reveal whether an account exists.
-    if (error && !/rate/i.test(error.message)) { setErr(error.message); return }
+    if (error) {
+      // Supabase's built-in mailer only sends a few e-mails per hour.
+      if (error.status === 429 || /rate|limit|seconds/i.test(error.message)) {
+        setErr("Trop de demandes d'e-mail pour le moment. Patientez quelques minutes (jusqu'à 1 heure) puis réessayez.")
+      } else {
+        setErr(`Envoi impossible : ${error.message}`)
+      }
+      return
+    }
+    // Success message stays vague on purpose: it doesn't reveal whether an account exists.
     setSent(true)
   }
 
@@ -31,7 +39,6 @@ export default function ForgotPassword() {
           <p>Pas de souci. Indiquez votre e-mail et nous vous enverrons un lien
              pour réinitialiser votre mot de passe.</p>
         </div>
-        <span className="auth-tag">Msaken Tennis Club · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">

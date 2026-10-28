@@ -211,7 +211,7 @@ tbody tr:hover td{background:rgba(27,33,28,.025)}
   .panel{padding:18px}
 }
 
-/* ================= v2: points / profile / banners ================= */
+/* ================= v2: profile / banners ================= */
 .avatar-lg{width:88px;height:88px;border-radius:50%;background:var(--char);color:var(--clay-lt);display:grid;place-items:center;font-family:var(--serif);font-size:34px;overflow:hidden;flex:none}
 .avatar-lg img{width:100%;height:100%;object-fit:cover}
 .avatar-sm{width:38px;height:38px;border-radius:50%;background:var(--clay-soft);color:var(--lime);display:grid;place-items:center;font-family:var(--serif);font-size:16px;overflow:hidden;flex:none}
@@ -309,3 +309,54 @@ tbody tr:hover td{background:rgba(27,33,28,.025)}
 .dir-contact a:hover{color:var(--lime)}
 
 @media(max-width:600px){.mp-meta{margin-left:0;width:100%}}
+
+/* ================= v4: admin back-office ================= */
+.toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.toolbar .tabs{margin-bottom:0;border-bottom:none;flex:1}
+.toolbar .tabs button{border:1px solid var(--line);margin-bottom:0;padding:9px 12px;background:var(--white)}
+.toolbar .tabs button.on{background:var(--char);color:var(--paper);border-color:var(--char)}
+.tab-count{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--lime);color:#fff;font-size:10px;letter-spacing:0}
+.search{position:relative;min-width:240px}
+.search .ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted)}
+.search input{width:100%;padding:10px 12px 10px 36px;border:1px solid var(--line);border-radius:2px;background:var(--white);font:inherit;font-size:14px}
+.search input:focus{outline:none;border-color:var(--lime)}
+.sub-muted{font-size:12.5px;color:var(--muted)}
+.cell-strong{font-weight:600}
+.check{display:inline-flex;align-items:center;gap:9px;font-size:14px;cursor:pointer;user-select:none}
+.check input{width:17px;height:17px;accent-color:var(--lime)}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.form-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.form-grid-3 .field{margin-bottom:0}
+.list-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.list-row:last-child{border-bottom:none}
+.list-row h4{font-size:18px;margin-bottom:4px}
+.list-row p{font-size:14px;color:var(--muted)}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.mini-tag{font-family:var(--mono-f);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line);color:var(--muted);border-radius:2px}
+.mini-tag.on{background:var(--lime);border-color:var(--lime);color:#fff}
+.mini-tag.dark{background:var(--char);border-color:var(--char);color:var(--paper)}
+.thumb{width:72px;height:52px;object-fit:cover;border:1px solid var(--line);flex:none}
+
+/* member side panel */
+.drawer-bg{position:fixed;inset:0;background:rgba(15,22,17,.45);z-index:80;animation:fade .2s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);z-index:81;overflow-y:auto;
+  box-shadow:-20px 0 50px rgba(0,0,0,.2);animation:slide .25s cubic-bezier(.2,.7,.2,1)}
+.drawer-head{display:flex;align-items:center;gap:14px;padding:22px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:1}
+.drawer-head h3{font-size:22px;flex:1;margin:0}
+.drawer-body{padding:22px 24px}
+.drawer-sec{margin-bottom:28px}
+.drawer-sec>h4{font-family:var(--mono-f);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);font-weight:400}
+.tx{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+@keyframes fade{from{opacity:0}}
+@keyframes slide{from{transform:translateX(30px);opacity:0}}
+
+.pinned-mark{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono-f);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+
+@media(max-width:760px){
+  .form-grid-3{grid-template-columns:1fr}
+  .search{min-width:0;flex:1 1 100%}
+  .panel table{display:block;overflow-x:auto;white-space:nowrap}
+}
+.tabs{overflow-y:hidden;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.is-hidden-row>:first-child{opacity:.5}

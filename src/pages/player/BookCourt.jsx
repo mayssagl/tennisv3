@@ -7,7 +7,7 @@ import EmptyState from '../../components/ui/EmptyState'
 import Icon from '../../components/Icon'
 import CourtMap from '../../components/CourtMap'
 
-const SLOTS = ['08:00','09:00','10:00','11:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00']
+import { SLOTS, bookingError as bookingErrorMsg } from '../../lib/booking'
 const surfaceLabel = t => (t === 'clay' ? 'Terre battue' : t === 'hard' ? 'Surface dure' : t)
 
 export default function BookCourt() {
@@ -55,7 +55,7 @@ export default function BookCourt() {
     })
 
     setBusy(false)
-    if (bookingError) return toast.error(bookingError.message)
+    if (bookingError) return toast.error(bookingErrorMsg(bookingError))
 
     setTaken(t => [...t, slot])
     setSlot('')

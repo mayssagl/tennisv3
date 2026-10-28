@@ -41,7 +41,6 @@ export default function Login() {
              au cœur de la vie du club.</p>
         </div>
         <span className="auth-tag">
-          Msaken Tennis Club · DEPUIS 2009
         </span>
       </aside>
 

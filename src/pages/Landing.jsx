@@ -10,13 +10,21 @@ import aerialImg from '../assets/terrain1-map.jpg'
 import heroImg from '../assets/hero-aerial.jpg'
 import hallImg from '../assets/terrain2-map.jpg'
 import ballImg from '../assets/tn.png'
+import staffImg from '../assets/staff-2026.jpg'
+import Icon from '../components/Icon'
+import { useSiteContent } from '../lib/siteContent'
+
+// "Circuit: ITF World Tennis Tour" lines -> [['Circuit', 'ITF World Tennis Tour'], ...]
+const parseDetails = txt => (txt ?? '').split('\n')
+  .map(l => l.split(':')).filter(p => p.length > 1 && p[0].trim())
+  .map(([k, ...v]) => [k.trim(), v.join(':').trim()])
 
 const SLOTS = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']
 
 const STATS = [
   { k: 'Installations', v: '9 courts', s: '1 terre battue · 8 en dur' },
   { k: 'Communauté', v: '150+', s: 'Membres actifs' },
-  { k: 'Encadrement', v: '5+ coachs', s: 'Tous âges, tous niveaux' },
+  { k: 'Staff technique', v: 'STAFF_COUNT', s: 'Encadrants · saison 2026–27' },
   { k: 'Fondation', v: '2009', s: 'Au cœur de Msaken' },
 ]
 
@@ -41,29 +49,11 @@ const COURTS = [
   },
 ]
 
-const AGENDA = [
-  {
-    when: 'Mars 2026', kind: 'Tournoi par équipes', title: 'HolaSol Team Cup',
-    text: "Un tournoi aux couleurs de notre partenaire HolaSol Energie. Plus qu'une compétition : une fête de l'esprit d'équipe.",
-    link: 'Voir les résultats',
-  },
-  {
-    when: 'Toute la saison', kind: 'Compétition interne', title: 'Championnats du club',
-    text: 'Championnats saisonniers et rencontres entre membres. Inscriptions ouvertes depuis votre espace membre.',
-    link: "S'inscrire",
-  },
-  {
-    when: 'Chaque semaine', kind: 'Académie', title: 'Programmes jeunes & adultes',
-    text: "Séances d'entraînement encadrées par nos coachs certifiés, de l'initiation à la compétition.",
-    link: 'Rejoindre un groupe',
-  },
-]
-
 const LIFE = [
   {
     tag: 'Académie', title: 'Académie & coaching', img: juniorImg, pos: '50% 62%',
     text: "Programmes personnalisés pour tous les âges et tous les niveaux, avec notre équipe d'entraîneurs certifiés.",
-    foot: '5+ coachs certifiés', cta: 'Découvrir', to: '/register',
+    foot: 'STAFF_COUNT encadrants · saison 2026–27', cta: "Voir l'équipe", href: '#equipe',
   },
   {
     tag: 'Communauté', title: 'Trouver un partenaire', img: holasolImg, pos: '50% 30%',
@@ -98,7 +88,17 @@ export default function Landing() {
   const [surface, setSurface] = useState('clay')
   const [slot, setSlot] = useState('18:00')
   const [players, setPlayers] = useState('simple')
+  const [hideBanner, setHideBanner] = useState(false)
 
+  const content = useSiteContent()
+  const { club: CLUB, staff, events, banner } = content
+  const leads = staff.filter(s => s.is_lead)
+  const coaches = staff.filter(s => !s.is_lead)
+  const featured = events.find(e => e.featured) ?? events[0]
+  const agenda = events.filter(e => e !== featured).slice(0, 3)
+  const featSpecs = parseDetails(featured?.details)
+
+  // Fade-in on scroll. Re-runs when content arrives from the database so new items are picked up.
   useEffect(() => {
     const io = new IntersectionObserver((es) => {
       es.forEach((e) => {
@@ -109,9 +109,9 @@ export default function Landing() {
         io.unobserve(e.target)
       })
     }, { threshold: 0.12 })
-    document.querySelectorAll('.lp .reveal').forEach(el => io.observe(el))
+    document.querySelectorAll('.lp .reveal:not(.in)').forEach(el => io.observe(el))
     return () => io.disconnect()
-  }, [])
+  }, [content])
 
   const book = (e) => {
     e.preventDefault()
@@ -121,6 +121,16 @@ export default function Landing() {
   return (
     <div className="lp">
       <Navbar />
+
+      {banner && !hideBanner && (
+        <div className="lp-banner" role="status">
+          <div className="lp-wrap lp-banner-in">
+            <Icon name="bell" />
+            <p><strong>{banner.title}</strong>{banner.body && <span> — {banner.body}</span>}</p>
+            <button type="button" aria-label="Fermer l'annonce" onClick={() => setHideBanner(true)}><Icon name="x" /></button>
+          </div>
+        </div>
+      )}
 
       {/* ================= HERO ================= */}
       <section className="lp-hero" style={{ '--hero-img': `url(${heroImg})` }}>
@@ -230,7 +240,7 @@ export default function Landing() {
             {STATS.map(s => (
               <div key={s.k} className="lp-stat reveal">
                 <span className="lp-mono">{s.k}</span>
-                <strong>{s.v}</strong>
+                <strong>{s.v.replace('STAFF_COUNT', staff.length)}</strong>
                 <small>{s.s}</small>
               </div>
             ))}
@@ -283,39 +293,38 @@ export default function Landing() {
           <SectionLabel n="03" label="Calendrier" aside="Tournois & temps forts" />
 
           <div className="lp-agenda">
-            <article className="lp-feature reveal" style={{ '--feat-img': `url(${itfImg})` }}>
-              <div className="lp-feature-in">
-                <div className="lp-feature-tags">
-                  <span className="lp-tag lp-tag-clay">Tournoi international</span>
-                  <span className="lp-mono">ITF · Juniors</span>
+            {featured && (
+              <article className="lp-feature reveal" style={{ '--feat-img': `url(${featured.image_url || itfImg})` }}>
+                <div className="lp-feature-in">
+                  <div className="lp-feature-tags">
+                    {featured.kind && <span className="lp-tag lp-tag-clay">{featured.kind}</span>}
+                  </div>
+                  <h3>{featured.title}</h3>
+                  {featured.when_label && <p className="lp-feature-when">{featured.when_label}</p>}
+                  {featured.body && <p>{featured.body}</p>}
+                  {featSpecs.length > 0 && (
+                    <dl className="lp-feature-specs" style={{ gridTemplateColumns: `repeat(${Math.min(featSpecs.length, 3)}, 1fr)` }}>
+                      {featSpecs.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+                    </dl>
+                  )}
+                  <div className="lp-feature-cta">
+                    <Link to="/register" className="lp-btn lp-btn-clay">{featured.link_label || 'En savoir plus'}</Link>
+                    <Link to="/login" className="lp-btn lp-btn-ghost">Espace membre</Link>
+                  </div>
                 </div>
-                <h3>ITF World Tennis Tour Juniors</h3>
-                <p className="lp-feature-when">Saison 2025 — Msaken Tennis Club</p>
-                <p>Une étape historique pour le club : accueillir le circuit mondial junior de
-                   l'ITF à Msaken. Un tournoi rempli de passion, de fair-play et de souvenirs
-                   inoubliables.</p>
-                <dl className="lp-feature-specs">
-                  <div><dt>Circuit</dt><dd>ITF World Tennis Tour</dd></div>
-                  <div><dt>Catégorie</dt><dd>Juniors</dd></div>
-                  <div><dt>Organisateur</dt><dd>Msaken TC</dd></div>
-                </dl>
-                <div className="lp-feature-cta">
-                  <Link to="/register" className="lp-btn lp-btn-clay">Suivre les tournois</Link>
-                  <Link to="/login" className="lp-btn lp-btn-ghost">Espace membre</Link>
-                </div>
-              </div>
-            </article>
+              </article>
+            )}
 
             <div className="lp-agenda-list">
-              {AGENDA.map(a => (
-                <article key={a.title} className="lp-agenda-item reveal">
+              {agenda.map(a => (
+                <article key={a.id ?? a.title} className="lp-agenda-item reveal">
                   <div className="lp-agenda-meta">
                     <span>{a.kind}</span>
-                    <span>{a.when}</span>
+                    <span>{a.when_label}</span>
                   </div>
                   <h4>{a.title}</h4>
-                  <p>{a.text}</p>
-                  <Link to="/register" className="lp-more">{a.link} <span aria-hidden>→</span></Link>
+                  <p>{a.body}</p>
+                  <Link to="/register" className="lp-more">{a.link_label || 'En savoir plus'} <span aria-hidden>→</span></Link>
                 </article>
               ))}
             </div>
@@ -346,12 +355,97 @@ export default function Landing() {
                   <h3>{l.title}</h3>
                   <p>{l.text}</p>
                   <div className="lp-life-foot">
-                    <span className="lp-mono">{l.foot}</span>
-                    <Link to={l.to} className="lp-more">{l.cta} <span aria-hidden>→</span></Link>
+                    <span className="lp-mono">{l.foot.replace('STAFF_COUNT', staff.length)}</span>
+                    {l.href
+                      ? <a href={l.href} className="lp-more">{l.cta} <span aria-hidden>→</span></a>
+                      : <Link to={l.to} className="lp-more">{l.cta} <span aria-hidden>→</span></Link>}
                   </div>
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= 05 / ÉQUIPE ================= */}
+      <section className="lp-sec" id="equipe">
+        <div className="lp-wrap">
+          <SectionLabel n="05" label="Équipe" aside="Staff technique 2026 – 2027" />
+          <div className="lp-head reveal">
+            <h2>Le staff <em>technique.</em></h2>
+            <p>{staff.length} encadrants accompagnent les joueurs du club, de l'école de tennis
+               jusqu'à la compétition.</p>
+          </div>
+
+          <div className="lp-staff">
+            <figure className="lp-staff-poster reveal">
+              <a href={staffImg} target="_blank" rel="noreferrer" title="Agrandir l'organigramme">
+                <img src={staffImg}  alt="Organigramme du staff technique 2026 – 2027 du Msaken Tennis Club" />
+              </a>
+              <figcaption>Organigramme officiel · saison 2026 – 2027</figcaption>
+            </figure>
+
+            <div className="lp-staff-list reveal">
+              <h4 className="lp-mono">Direction & responsables</h4>
+              <ul className="lp-leads">
+                {leads.map(s => (
+                  <li key={s.id ?? s.name}>
+                    <span className="lp-initials" aria-hidden>{s.name.split(' ').map(w => w[0]).slice(0, 2).join('')}</span>
+                    <div>
+                      <strong>{s.name}</strong>
+                      <span>{s.role}{s.extra && <> · {s.extra}</>}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="lp-mono">Entraîneurs</h4>
+              <ul className="lp-coaches">
+                {coaches.map(s => <li key={s.id ?? s.name}>{s.name}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= 06 / CONTACT ================= */}
+      <section className="lp-sec lp-sec-alt" id="contact">
+        <div className="lp-wrap">
+          <SectionLabel n="06" label="Contact" aside="Msaken · Sousse · Tunisie" />
+          <div className="lp-head reveal">
+            <h2>Venez nous <em>rendre visite.</em></h2>
+            <p>Une question sur les cours, l'adhésion ou une réservation&nbsp;? Appelez-nous ou
+               écrivez-nous sur WhatsApp, nous répondons rapidement.</p>
+          </div>
+
+          <div className="lp-contact">
+            <div className="lp-contact-list reveal">
+              <a className="lp-contact-item" href={CLUB.phoneHref}>
+                <Icon name="phone" />
+                <div><span className="lp-mono">Téléphone</span><strong>{CLUB.phoneDisplay}</strong></div>
+              </a>
+              <a className="lp-contact-item" href={CLUB.whatsapp} target="_blank" rel="noreferrer">
+                <Icon name="whatsapp" />
+                <div><span className="lp-mono">WhatsApp</span><strong>Écrire au club</strong></div>
+              </a>
+              <a className="lp-contact-item" href={CLUB.mapsLink} target="_blank" rel="noreferrer">
+                <Icon name="pin" />
+                <div><span className="lp-mono">Adresse · itinéraire</span><strong>{CLUB.address[0]}</strong><small>{CLUB.address[1]}</small></div>
+              </a>
+              <div className="lp-contact-item">
+                <Icon name="clock" />
+                <div><span className="lp-mono">Horaires</span><strong>{CLUB.hours}</strong></div>
+              </div>
+              <div className="lp-contact-social">
+                <a href={CLUB.facebook} target="_blank" rel="noreferrer"><Icon name="facebook" />Facebook</a>
+                <a href={CLUB.instagram} target="_blank" rel="noreferrer"><Icon name="instagram" />Instagram</a>
+              </div>
+            </div>
+
+            <div className="lp-map reveal">
+              <iframe title="Plan d'accès — Msaken Tennis Club" src={CLUB.mapsEmbed}
+                loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+            </div>
           </div>
         </div>
       </section>
@@ -366,8 +460,8 @@ export default function Landing() {
                profiter de la réservation prioritaire, des tournois du club et des tarifs
                partenaires.</p>
             <ul className="lp-cta-info">
-              <li>Avenue de l'Indépendance, Msaken</li>
-              <li>Tous les jours · 08:00 – 23:00</li>
+              <li><a href={CLUB.phoneHref}>{CLUB.phoneDisplay}</a></li>
+              <li>{CLUB.hours}</li>
             </ul>
           </div>
           <div className="lp-cta-btns reveal">
@@ -378,6 +472,10 @@ export default function Landing() {
       </section>
 
       <Footer />
+
+      <a className="lp-wa" href={CLUB.whatsapp} target="_blank" rel="noreferrer" aria-label="Écrire au club sur WhatsApp">
+        <Icon name="whatsapp" /><span>WhatsApp</span>
+      </a>
     </div>
   )
 }

@@ -47,7 +47,6 @@ export default function Register() {
              créneau sur la terre battue de Msaken.</p>
         </div>
         <span className="auth-tag">
-          Msaken Tennis Club · DEPUIS 2009
         </span>
       </aside>
 

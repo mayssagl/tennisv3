@@ -13,6 +13,9 @@ import Courts from './pages/admin/Courts'
 import AdminBookings from './pages/admin/Bookings'
 import Members from './pages/admin/Members'
 import Announcements from './pages/admin/Announcements'
+import Site from './pages/admin/Site'
+import AdminCoaching from './pages/admin/Coaching'
+import AdminPartners from './pages/admin/Partners'
 
 import CoachLayout from './pages/coach/CoachLayout'
 import CoachSchedule from './pages/coach/Schedule'
@@ -45,6 +48,9 @@ export default function App() {
         <Route path="bookings" element={<AdminBookings />} />
         <Route path="members" element={<Members />} />
         <Route path="announcements" element={<Announcements />} />
+        <Route path="site" element={<Site />} />
+        <Route path="coaching" element={<AdminCoaching />} />
+        <Route path="partners" element={<AdminPartners />} />
       </Route>
 
       {/* Coach */}

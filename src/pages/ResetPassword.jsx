@@ -11,13 +11,24 @@ export default function ResetPassword() {
   const nav = useNavigate()
   const { user } = useAuth()
   const [ready, setReady] = useState(false)   // a session exists (recovery or normal)
+  const [checking, setChecking] = useState(true)
   const [pw, setPw] = useState({ a: '', b: '' })
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
 
+  // Supabase puts the reason in the link when it's expired or already used,
+  // e.g. #error=access_denied&error_code=otp_expired&error_description=...
+  const linkError = (() => {
+    const p = new URLSearchParams(window.location.hash.slice(1) || window.location.search)
+    const code = p.get('error_code'), desc = p.get('error_description')
+    if (!code && !desc) return ''
+    if (code === 'otp_expired') return 'Ce lien a expiré ou a déjà été utilisé. Demandez-en un nouveau (il est valable une heure et ne fonctionne qu\'une fois).'
+    return desc?.replace(/\+/g, ' ') || 'Lien invalide.'
+  })()
+
   useEffect(() => {
     // recovery link establishes a temporary session; or the user is already logged in
-    supabase.auth.getSession().then(({ data }) => setReady(!!data.session))
+    supabase.auth.getSession().then(({ data }) => { setReady(!!data.session); setChecking(false) })
     const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY' || session) setReady(true)
     })
@@ -43,15 +54,16 @@ export default function ResetPassword() {
           <h2>Nouveau <em>mot de passe</em>.</h2>
           <p>Choisissez un mot de passe solide pour sécuriser votre compte membre.</p>
         </div>
-        <span className="auth-tag">Msaken Tennis Club · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">
         <div className="auth-card">
           <h1>Définir le mot de passe</h1>
-          {!ready ? (
+          {checking && !ready ? (
+            <p className="sub">Vérification du lien…</p>
+          ) : !ready ? (
             <>
-              <p className="sub">Lien invalide ou expiré. Demandez un nouveau lien de réinitialisation.</p>
+              <p className="sub">{linkError || 'Lien invalide ou expiré. Demandez un nouveau lien de réinitialisation.'}</p>
               <Link to="/forgot-password" className="btn btn-lime" style={{ width: '100%', justifyContent: 'center' }}>Demander un lien</Link>
             </>
           ) : (

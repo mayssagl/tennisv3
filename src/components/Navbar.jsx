@@ -6,7 +6,8 @@ const LINKS = [
   { href: '#club', label: 'Le Club' },
   { href: '#courts', label: 'Courts' },
   { href: '#calendrier', label: 'Événements' },
-  { href: '#vie', label: 'Académie' },
+  { href: '#equipe', label: 'Équipe' },
+  { href: '#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
