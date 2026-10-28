@@ -1,5 +1,5 @@
 -- ============================================================================
--- M'SAKEN TENNIS CLUB — Migration v2
+-- MSAKEN TENNIS CLUB — Migration v2
 -- Adds: points system, profile fields (bio/level/avatar), real court line-up
 --       (1 clay + 8 hard), avatar storage, welcome points.
 -- Run ONCE in the Supabase SQL Editor, AFTER schema.sql.

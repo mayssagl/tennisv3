@@ -43,7 +43,7 @@ export default function ResetPassword() {
           <h2>Nouveau <em>mot de passe</em>.</h2>
           <p>Choisissez un mot de passe solide pour sécuriser votre compte membre.</p>
         </div>
-        <span className="auth-tag">M'SAKEN · DEPUIS 2009</span>
+        <span className="auth-tag">Msaken Tennis Club · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">

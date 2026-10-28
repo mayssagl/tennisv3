@@ -18,8 +18,8 @@ export default function Navbar() {
         <Link to="/" className="lp-brand" onClick={() => setOpen(false)}>
           <img src={logo} alt="" />
           <span>
-            <b>M'Saken</b>
-            <small>Tennis Club · Msaken</small>
+            <b>Msaken Tennis Club</b>
+            <small>Depuis 2009</small>
           </span>
         </Link>
 

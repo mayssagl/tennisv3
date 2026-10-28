@@ -31,7 +31,7 @@ export default function ForgotPassword() {
           <p>Pas de souci. Indiquez votre e-mail et nous vous enverrons un lien
              pour réinitialiser votre mot de passe.</p>
         </div>
-        <span className="auth-tag">M'SAKEN · DEPUIS 2009</span>
+        <span className="auth-tag">Msaken Tennis Club · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">

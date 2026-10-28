@@ -47,14 +47,14 @@ export default function Register() {
              créneau sur la terre battue de Msaken.</p>
         </div>
         <span className="auth-tag">
-          M'SAKEN · DEPUIS 2009
+          Msaken Tennis Club · DEPUIS 2009
         </span>
       </aside>
 
       <main className="auth-form">
         <div className="auth-card">
           <h1>Inscription</h1>
-          <p className="sub">Devenez membre du M'Saken Tennis Club.</p>
+          <p className="sub">Devenez membre du Msaken Tennis Club.</p>
 
           <div className="field">
             <label>Nom complet</label>

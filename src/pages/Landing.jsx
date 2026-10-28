@@ -7,6 +7,7 @@ import juniorImg from '../assets/junior.jpg'
 import itfImg from '../assets/itf.jpg'
 import holasolImg from '../assets/holasol.jpg'
 import aerialImg from '../assets/terrain1-map.jpg'
+import heroImg from '../assets/hero-aerial.jpg'
 import hallImg from '../assets/terrain2-map.jpg'
 import ballImg from '../assets/tn.png'
 
@@ -122,7 +123,7 @@ export default function Landing() {
       <Navbar />
 
       {/* ================= HERO ================= */}
-      <section className="lp-hero" style={{ '--hero-img': `url(${aerialImg})` }}>
+      <section className="lp-hero" style={{ '--hero-img': `url(${heroImg})` }}>
         <div className="lp-wrap">
           <div className="lp-hero-top">
             <span className="lp-chip"><i className="lp-dot" />Est. 2009 — Msaken, Sousse</span>
@@ -196,8 +197,8 @@ export default function Landing() {
 
           <div className="lp-club">
             <div className="lp-club-text reveal">
-              <h2>L'esprit M'Saken :<br /><em>un club, une famille.</em></h2>
-              <p>Depuis 2009, le M'Saken Tennis Club réunit joueurs confirmés, juniors et
+              <h2>L'esprit Msaken Tennis Club :<br /><em>un club, une famille.</em></h2>
+              <p>Depuis 2009, le Msaken Tennis Club réunit joueurs confirmés, juniors et
                  débutants autour d'une même passion. Neuf courts, une académie et une
                  communauté qui grandit chaque saison.</p>
               <p>Que vous preniez une raquette pour la première fois ou que vous prépariez
@@ -290,14 +291,14 @@ export default function Landing() {
                   <span className="lp-mono">ITF · Juniors</span>
                 </div>
                 <h3>ITF World Tennis Tour Juniors</h3>
-                <p className="lp-feature-when">Saison 2025 — M'Saken Tennis Club</p>
+                <p className="lp-feature-when">Saison 2025 — Msaken Tennis Club</p>
                 <p>Une étape historique pour le club : accueillir le circuit mondial junior de
                    l'ITF à Msaken. Un tournoi rempli de passion, de fair-play et de souvenirs
                    inoubliables.</p>
                 <dl className="lp-feature-specs">
                   <div><dt>Circuit</dt><dd>ITF World Tennis Tour</dd></div>
                   <div><dt>Catégorie</dt><dd>Juniors</dd></div>
-                  <div><dt>Organisateur</dt><dd>M'Saken TC</dd></div>
+                  <div><dt>Organisateur</dt><dd>Msaken TC</dd></div>
                 </dl>
                 <div className="lp-feature-cta">
                   <Link to="/register" className="lp-btn lp-btn-clay">Suivre les tournois</Link>

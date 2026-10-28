@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="lp-wrap">
         <div className="lp-foot-grid">
           <div className="lp-foot-brand">
-            <div className="lp-foot-name">M'Saken<small>Tennis Club · Msaken</small></div>
+            <div className="lp-foot-name">Msaken Tennis Club<small>Depuis 2009</small></div>
             <p>Sportif. Communautaire. Professionnel. La maison du tennis à Msaken depuis 2009.</p>
             <address>Avenue de l'Indépendance<br />Msaken, Sousse — Tunisie</address>
           </div>
@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="lp-wrap">
           <span><i className="lp-dot" />Ouvert tous les jours · 08:00 – 23:00</span>
           <span>Msaken, Sousse</span>
-          <span>© 2026 M'Saken Tennis Club. Tous droits réservés.</span>
+          <span>© 2026 Msaken Tennis Club. Tous droits réservés.</span>
         </div>
       </div>
     </footer>

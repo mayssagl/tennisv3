@@ -1,6 +1,6 @@
-# M'Saken Tennis Club — Web Platform
+# Msaken Tennis Club — Web Platform
 
-Full-stack management platform for the M'Saken Tennis Club (Msaken, Tunisia).
+Full-stack management platform for the Msaken Tennis Club (Msaken, Tunisia).
 **React + Vite + Supabase**, role-based (admin / coach / player), in French.
 
 ---

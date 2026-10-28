@@ -1,5 +1,5 @@
 -- ============================================================================
--- M'SAKEN TENNIS CLUB — Migration v3
+-- MSAKEN TENNIS CLUB — Migration v3
 -- Adds: "Trouver un partenaire" — match board (posts + responses).
 -- (Member directory reuses the existing profiles read policy.)
 -- Run ONCE in the Supabase SQL Editor, after migration_v2.sql.

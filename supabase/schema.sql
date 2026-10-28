@@ -1,5 +1,5 @@
 -- ============================================================================
--- M'SAKEN TENNIS CLUB — Supabase schema + Row Level Security
+-- MSAKEN TENNIS CLUB — Supabase schema + Row Level Security
 -- Run this in the Supabase SQL Editor (one shot). Order matters.
 -- ============================================================================
 
