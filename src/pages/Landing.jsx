@@ -126,7 +126,6 @@ export default function Landing() {
       <section className="lp-hero" style={{ '--hero-img': `url(${heroImg})` }}>
         <div className="lp-wrap">
           <div className="lp-hero-top">
-            <span className="lp-chip"><i className="lp-dot" />Est. 2009 — Msaken, Sousse</span>
             <span className="lp-hero-top-r">
               <span>1 court en terre battue</span>
               <span>8 courts en dur</span>

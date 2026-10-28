@@ -1,0 +1,13 @@
+# Netlify build settings (used automatically on every push to GitHub)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: let React Router handle every URL (e.g. /login, /player)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
