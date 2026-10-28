@@ -40,7 +40,7 @@ export default function Login() {
           <p>Connectez-vous pour réserver vos créneaux, suivre vos sessions et rester
              au cœur de la vie du club.</p>
         </div>
-        <span style={{ fontFamily: 'Barlow Condensed', letterSpacing: '.2em', fontSize: 12, color: 'rgba(255,255,255,.6)' }}>
+        <span className="auth-tag">
           M'SAKEN · DEPUIS 2009
         </span>
       </aside>

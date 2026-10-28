@@ -57,11 +57,11 @@ export default function Overview() {
         <div style={{ width: '100%', height: 280 }}>
           <ResponsiveContainer>
             <BarChart data={chart}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#eee" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(27,33,28,.1)" vertical={false} />
               <XAxis dataKey="jour" tickLine={false} axisLine={false} />
               <YAxis allowDecimals={false} tickLine={false} axisLine={false} width={28} />
-              <Tooltip cursor={{ fill: 'rgba(174,206,60,.1)' }} />
-              <Bar dataKey="total" fill="#aece3c" radius={[6, 6, 0, 0]} />
+              <Tooltip cursor={{ fill: 'rgba(180,83,43,.08)' }} />
+              <Bar dataKey="total" fill="#b4532b" radius={[2, 2, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -98,7 +98,7 @@ export default function BookCourt() {
                   onChange={e => setDate(e.target.value)} /></div>
             </div>
 
-            <label style={{ display: 'block', fontWeight: 600, fontSize: 13.5, margin: '22px 0 8px' }}>Créneaux (1 h)</label>
+            <label className="slot-label">Créneaux (1 h)</label>
             <div className="slot-grid">
               {SLOTS.map(s => (
                 <button key={s} disabled={taken.includes(s)} className={`slot${slot === s ? ' sel' : ''}`} onClick={() => setSlot(s)}>{s}</button>

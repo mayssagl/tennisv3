@@ -1,32 +1,52 @@
-import Logo from './Logo'
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
   return (
-    <footer className="site">
-      <div className="wrap">
-        <div className="foot">
-          <div className="foot-col" style={{ maxWidth: 320 }}>
-            <Logo size={44} />
-            <p style={{ marginTop: 14 }}>Sportif. Communautaire. Professionnel.
-              La maison du tennis sur terre battue à Msaken.</p>
+    <footer className="lp-foot">
+      <div className="lp-wrap">
+        <div className="lp-foot-grid">
+          <div className="lp-foot-brand">
+            <div className="lp-foot-name">M'Saken<small>Tennis Club · Msaken</small></div>
+            <p>Sportif. Communautaire. Professionnel. La maison du tennis à Msaken depuis 2009.</p>
+            <address>Avenue de l'Indépendance<br />Msaken, Sousse — Tunisie</address>
           </div>
-          <div className="foot-col">
-            <h4>Explorer</h4>
-            <div className="foot-links">
-              <a href="#">Politique de confidentialité</a>
-              <a href="#">Conditions d'utilisation</a>
-              <a href="#">Nous contacter</a>
-              <a href="#">Règlement du club</a>
-            </div>
+
+          <div>
+            <h4>Le club</h4>
+            <a href="#club">Notre histoire</a>
+            <a href="#courts">Nos courts</a>
+            <a href="#vie">Académie & coaching</a>
+            <a href="#">Règlement du club</a>
           </div>
-          <div className="foot-col">
-            <h4>Nous rendre visite</h4>
-            <p>Avenue de l'Indépendance<br/>Msaken, Sousse, Tunisie</p>
-            <p style={{ marginTop: 10 }}>Ouvert tous les jours : <span className="hours">08h00 – 23h00</span></p>
+          <div>
+            <h4>Courts</h4>
+            <a href="#courts">Terre battue</a>
+            <a href="#courts">Courts en dur</a>
+            <a href="#courts">Zone salle couverte</a>
+            <Link to="/player">Réserver un créneau</Link>
+          </div>
+          <div>
+            <h4>Calendrier</h4>
+            <a href="#calendrier">ITF World Tennis Tour Juniors</a>
+            <a href="#calendrier">HolaSol Team Cup</a>
+            <a href="#calendrier">Tournois du club</a>
+          </div>
+          <div>
+            <h4>Espace membre</h4>
+            <Link to="/login">Se connecter</Link>
+            <Link to="/register">Créer un compte</Link>
+            <Link to="/forgot-password">Mot de passe oublié</Link>
+            <a href="#">Nous contacter</a>
           </div>
         </div>
-        <div className="foot-bottom">
+
+      </div>
+
+      <div className="lp-foot-strip">
+        <div className="lp-wrap">
+          <span><i className="lp-dot" />Ouvert tous les jours · 08:00 – 23:00</span>
+          <span>Msaken, Sousse</span>
           <span>© 2026 M'Saken Tennis Club. Tous droits réservés.</span>
-          <span>Conçu pour la communauté tennistique de Msaken</span>
         </div>
       </div>
     </footer>

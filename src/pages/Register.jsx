@@ -46,7 +46,7 @@ export default function Register() {
           <p>Créez votre compte joueur en quelques secondes et réservez votre premier
              créneau sur la terre battue de Msaken.</p>
         </div>
-        <span style={{ fontFamily: 'Barlow Condensed', letterSpacing: '.2em', fontSize: 12, color: 'rgba(255,255,255,.6)' }}>
+        <span className="auth-tag">
           M'SAKEN · DEPUIS 2009
         </span>
       </aside>

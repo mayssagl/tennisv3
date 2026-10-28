@@ -43,7 +43,7 @@ export default function ResetPassword() {
           <h2>Nouveau <em>mot de passe</em>.</h2>
           <p>Choisissez un mot de passe solide pour sécuriser votre compte membre.</p>
         </div>
-        <span style={{ fontFamily: 'Barlow Condensed', letterSpacing: '.2em', fontSize: 12, color: 'rgba(255,255,255,.6)' }}>M'SAKEN · DEPUIS 2009</span>
+        <span className="auth-tag">M'SAKEN · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">

@@ -31,7 +31,7 @@ export default function ForgotPassword() {
           <p>Pas de souci. Indiquez votre e-mail et nous vous enverrons un lien
              pour réinitialiser votre mot de passe.</p>
         </div>
-        <span style={{ fontFamily: 'Barlow Condensed', letterSpacing: '.2em', fontSize: 12, color: 'rgba(255,255,255,.6)' }}>M'SAKEN · DEPUIS 2009</span>
+        <span className="auth-tag">M'SAKEN · DEPUIS 2009</span>
       </aside>
 
       <main className="auth-form">
